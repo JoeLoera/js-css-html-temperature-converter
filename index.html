@@ -8,6 +8,30 @@
     <title>JS CSS HTML Temperature Converter</title>
   </head>
   <body>
+    <div class="app-container">
+      <p>Convert units instantly with this converter!</p>
+
+      <div class="units-container">
+        <div class="unit-container">
+          <input class="unit-input" id="primary-input" type="number" />
+          <select id="primary-units">
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="celcius">Celcius</option>
+            <option value="kelvin">Kelvin</option>
+          </select>
+        </div>
+
+        <div class="unit-container">
+          <input class="unit-input" id="secondary-input" type="number" />
+          <select id="secondary-units">
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="celcius">Celcius</option>
+            <option value="kelvin">Kelvin</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
     <script src="/js/app.js"></script>
   </body>
 </html>
