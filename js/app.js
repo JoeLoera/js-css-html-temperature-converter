@@ -10,7 +10,11 @@ function update(e) {
   const elementId = e.target.id;
 
   if (elementId === "secondary-input") {
-    secondarySelect.value, primarySelect.value, secondaryInput.value;
+    primaryInput.value = calculate(
+      secondarySelect.value,
+      primarySelect.value,
+      secondaryInput.value
+    );
   } else {
     secondaryInput.value = calculate(
       primarySelect.value,
@@ -34,15 +38,35 @@ function calculate(firstTempUnit, secondTempUnit, temp) {
       // C = (F - 32) * 5/9
       result = ((Number(temp) - 32) * 5) / 9;
       break;
-    //convery celcius to fahrenheit
+    // convert celcius to get fahrenheit
     case "celcius-fahrenheit":
-      //F = (C*9/5) +32
-      result = Number(temp) * (9 / 5) + 32;
+      // F = (C * 9/5) + 32
+      result = (Number(temp) * 9) / 5 + 32;
+      break;
+    // convert kelvin to get fahrenheit
+    case "kelvin-fahrenheit":
+      // F = (K - 273.15) * 9/5 + 32
+      result = ((Number(temp) - 273.15) * 9) / 5 + 32;
+      break;
+    // convert kelvin to get celcius
+    case "kelvin-celcius":
+      // C = K - 273.15
+      result = Number(temp) - 273.15;
+      break;
+    // convert fahrenheit to get kelvin
+    case "fahrenheit-kelvin":
+      // K = (F - 32) * 5/9 + 273.15
+      result = ((Number(temp) - 32) * 5) / 9 + 273.15;
+      break;
+    // convert celcius to get kelvin
+    case "celcius-kelvin":
+      // K = C + 273.15
+      result = Number(temp) + 273.15;
       break;
   }
+  return result.toFixed(2);
 }
 
-primaryInput.addEventListener("change", update);
-secondaryInput.addEventListener("change", update);
-primarySelect.addEventListener("change", update);
-secondarySelect.addEventListener("change", update);
+[primaryInput, secondaryInput, primarySelect, secondarySelect].forEach(
+  (element) => element.addEventListener("change", update)
+);
